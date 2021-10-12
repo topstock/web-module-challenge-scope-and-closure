@@ -93,15 +93,15 @@ Use the finalScore function below to do the following:
 }
 */ 
 
-function finalScore(func, inningCount/*code Here*/){
+function finalScore(inningCb, inningCount/*code Here*/){
   /*Code Here*/
   let scores = {
     "Home": 0,
     "Away": 0
   };
   for (let i = 0; i < inningCount; i++){
-    scores['Home'] += func();
-    scores['Away'] += func();
+    scores['Home'] += inningCb();
+    scores['Away'] += inningCb();
   }
   return scores
 }
@@ -111,9 +111,9 @@ Use the getInningScore() function below to do the following:
   1. Receive a callback function - you will pass in the inning function from task 2 as your argument 
   2. Return an object with a score for home and a score for away that populates from invoking the inning callback function */
 
-function getInningScore(func/*Your Code Here */) {
+function getInningScore(inningCb/*Your Code Here */) {
   /*Your Code Here */
-  return finalScore(func, 1)
+  return finalScore(inningCb, 1)
 }
 
 
@@ -158,13 +158,13 @@ Use the scoreboard function below to do the following:
 ]  
   */
 
-function scoreboard(funcScore, funcInning, inningsPlayed/* CODE HERE */) {
+function scoreboard(scoreCb, inningCb, inningsPlayed/* CODE HERE */) {
   /* CODE HERE */
   let announcements = [];
   let homeTotal = 0;
   let awayTotal = 0;
     for (let i = 1; i <= inningsPlayed; i++) {
-      let thisInningObj = funcScore(funcInning, 1);
+      let thisInningObj = scoreCb(inningCb, 1);
       announcements.push(`Inning ${i}: Away ${thisInningObj['Away']} - Home ${thisInningObj['Home']}`);
       homeTotal += thisInningObj['Home'];
       awayTotal += thisInningObj['Away'];
@@ -177,7 +177,7 @@ function scoreboard(funcScore, funcInning, inningsPlayed/* CODE HERE */) {
   return announcements
 }
 
-// console.log(scoreboard(finalScore, inning, 9));
+ console.log(scoreboard(finalScore, inning, 9));
 
 
 
